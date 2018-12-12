@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'pages/dashboard'
+  post 'pages/asignadmin', to: 'pages#asignadmin'
+  post 'pages/deladmin', to: 'pages#deladmin'
+  delete 'pages/deluser', to: 'pages#deluser'
+
 	resources :posts do
 		resources :comments, only: [:create, :destroy]
 	end

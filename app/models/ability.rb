@@ -9,6 +9,8 @@ class Ability
       if user.admin?
         can :destroy, Post
         can :destroy, Comment
+        can :read, :all
+        can :manage, PagesController
       end
       can :create, [Post, Comment]
       can :read, [Post, Comment]
