@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Post.destroy_all
+User.destroy_all
+
+
+
+10.times do |i|
+  u = User.create!(name: "User #{i}", email: "email#{i}@gmail.com", password: "123456")
+  p = Post.create!(title: "Post #{i}", content: "Contenido#{i}", user: u)
+  10.times do |j|
+    c = p.comments.build(content: "comentario #{j} del post #{i}", user: u, post: p)
+    c.save
+  end
+end
+
+
+u1 = User.create!(name: "Admin", email: "admin@gmail.com", password: "123456", role: 0)
+p = Post.create!(title: "Post de admin", content: "Contenido Lorem Ipsum", user: u1)
+10.times do |j|
+  c = p.comments.build(content: "comentario #{j} del post de admin", user: u1, post: p)
+  c.save
+end
